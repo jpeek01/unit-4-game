@@ -1,0 +1,30 @@
+
+
+
+
+
+
+
+
+
+
+
+#gameBoard {
+    width: 350px;
+    height: auto;
+    padding: 25px;
+    background-color: lightgrey;
+}
+
+.gameBox {
+    max-width: 90%;
+    height: auto;
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+p {
+    line-height: 1.6em;
+}
