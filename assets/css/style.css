@@ -1,13 +1,20 @@
 
+.borderCheck {
+    border: 1px solid red;
+}
 
+#header {
+    height: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    background-color: #21618C;
+    color: white;
+}
 
-
-
-
-
-
-
-
+#stats {
+    background-color: #7FB3D5;
+}
 
 #gameBoard {
     width: 350px;
@@ -16,15 +23,39 @@
     background-color: lightgrey;
 }
 
-.gameBox {
-    max-width: 90%;
-    height: auto;
-    margin: 20px;
-    padding: 15px;
-    background-color: white;
-    border: 1px solid black;
+.arenaBox {
+    margin:20px;
+}
+
+#attack {
+    margin: 25px;
+}
+
+#characters {
+    background-color: #7FB3D5;
+}
+
+.gameCharacter {
+    max-width: 75%;
+    margin: 20px auto;
 }
 
 p {
     line-height: 1.6em;
+}
+
+footer {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
+#footerText {
+    line-height: 1.5em;
+    text-align: center;
+    margin: 10px auto;
 }

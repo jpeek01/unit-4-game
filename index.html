@@ -3,39 +3,107 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Literary Smackdown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/javascript.js"></script>
     
 </head>
 <body>
-    <div id='gameBoard'>
-
-        <h3 id='round'>Round:</h3>
-        <hr>
-        <div class="gameBox">
-            <h5>Player 1</h5>
-            <p id='playerHealthPointsId'>Health points:</p>
-            <p  id='playerAttackScore'>Damage Taken:</p>
-        </div>
-
-        <div class="gameBox">
-            <h5>Computer</h5>
-            <p id='computerHealthPointsId'>Health points:</p>
-            <p id='computerAttackScore'>Damage Taken:</p>
-        </div>
-
-        <div class="gameBox">
-            <button type="button" id='attack'>Attack!</button>
-        </div>
-        
+    <div id="header" class="">
+        <h2>Literary Smackdown</h2>
     </div>
-
-    
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button type="button" class="btn btn-success" id="start">Start Game</button>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" id="stats">
+                <div class="card arenaBox" id="playerCharacter">
+                    <div class="card-header">
+                        <h5>Game Stats</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-text" id='gameCounter'>Game: </h6>
+                        <p class="card-text" id='roundCounter'>Round: </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" id='gameBoard'>
+                <h3>Arena</h3>
+                <hr>
+                <div class="card-group">
+                    <div class="card arenaBox" id="playerCharacter">
+                        <div class="card-header">
+                            <h5>Player</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"></p>
+                            <p id='playerHealthPointsId'>Health points:</p>
+                            <p id='playerAttackScore'>Damage Taken:</p>
+                        </div>
+                    </div> <!-- End Player -->
+                    <div class="card arenaBox" id="currentChallenger">
+                        <div class="card-header">
+                            <h5>Challenger</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"></p>
+                            <p id='computerHealthPointsId'>Health points:</p>
+                            <p id='computerAttackScore'>Damage Taken:</p>
+                        </div>
+                    </div> <!-- End Challenger -->
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary disabled" id='attack'>Attack!</button>
+                </div>
+            </div> <!-- end game board -->
+            <div class="col-md-3" id="characters">
+                <div class="card gameCharacter">
+                    <div class="card-header">
+                        <h5>Faust</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Health Points: 100</p>
+                        <a href="#" class="btn btn-primary btn-sm">Challenge</a>
+                    </div>
+                </div> <!-- end character 1-->
+                <div class="card gameCharacter">
+                    <div class="card-header">
+                        <h5>Iago</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Health Points: 125</p>
+                        <a href="#" class="btn btn-primary btn-sm">Challenge</a>
+                    </div>
+                </div> <!-- end character 2-->
+                <div class="card gameCharacter">
+                    <div class="card-header">
+                        <h5>Grendel</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Health Points: 150</p>
+                        <a href="#" class="btn btn-primary btn-sm">Challenge</a>
+                    </div>
+                </div> <!-- end character 3-->
+                <div class="card gameCharacter">
+                    <div class="card-header">
+                        <h5>Sauron</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Health Points: 200</p>
+                        <a href="#" class="btn btn-primary btn-sm">Challenge</a>
+                    </div>
+                </div> <!-- end character 3-->
+            </div>
+        </div>
+    </div>
+    <footer class="footer text-centered">
+        <p id="footerText" class="" >Copyright James Peek 2018</p>
+    </footer>
 </body>
 </html>

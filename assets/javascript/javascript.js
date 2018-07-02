@@ -1,51 +1,82 @@
+var game = {
+    playerHealthPoints: 100,
+    computerHealthPoints: 50,
+    playerAttackPoints: 0,
+    computerAttackPoints: 0,
+    roundCounter: 0,
+    gameCounter: 0,
+    roundComplete: false,
+};
 
 
 $(document).ready(function() {
 
-    var playerHealthPoints = 50;
-    var computerHealthPoints = 50;
-    var playerAttackPoints = 0;
-    var computerAttackPoints = 0;
-    var roundCounter = 1;
-    var roundComplete = true;
-
     $('#attack').on('click', function() {
 
-        playerAttackPoints = Math.floor(Math.random() * 26);
-        computerAttackPoints = Math.floor(Math.random() * 26);
+        game.playerAttackPoints = Math.floor(Math.random() * 26);
+        game.computerAttackPoints = Math.floor(Math.random() * 26);
 
-        if (playerHealthPoints > 0 && computerHealthPoints > 0 && roundComplete == true) {
-            attack(playerHealthPoints,playerAttackPoints,computerHealthPoints,computerAttackPoints);
-            roundCounter++ ;
-            console.log('first if Health: ' + roundCounter + ' ' + computerHealthPoints + ' ' + playerHealthPoints); 
-        } else if (playerHealthPoints < 0 || computerHealthPoints < 0) {
-            $('#round').text((playerHealthPoints <= 0) ? 'The Computer Won' : 'The Player Won');
+        console.log('test');
+
+        if (game.playerHealthPoints > 0 && game.computerHealthPoints > 0 && game.roundComplete == false) {
+            attack(game.playerHealthPoints,game.playerAttackPoints,game.computerHealthPoints,game.computerAttackPoints);
+            game.roundCounter++ ;
+            game.gameCounter++;
+            console.log('first if Health: ' + game.roundCounter + ' ' + game.computerHealthPoints + ' ' 
+                + game.playerHealthPoints); 
+        } else if (game.playerHealthPoints < 0 || game.computerHealthPoints < 0) {
+            $('#roundCounter').text((game.playerHealthPoints <= 0) ? 'The Computer Won' : 'The Player Won');
 
             $('#attack').prop('disabled', true);
 
             roundComplete = true;
 
             console.log('Game Over!');
-        }
+        };
     });
 
-function attack() {
 
-    playerHealthPoints = playerHealthPoints - computerAttackPoints;
-    computerHealthPoints = computerHealthPoints - playerAttackPoints;
-
-    console.log('Attack: ' + roundCounter + ' ' + playerAttackPoints + ' ' + computerAttackPoints);
-    console.log('Health: ' + roundCounter + ' ' + computerHealthPoints + ' ' + playerHealthPoints); 
-
-    $('#round').text('Round: ' + roundCounter);
-    $('#playerHealthPointsId').text((playerHealthPoints > 0) ? 'Health points: ' + playerHealthPoints : 'Health points: ' + 0);
-    $('#computerHealthPointsId').text((computerHealthPoints > 0) ? 'Health points: ' + computerHealthPoints : 'Health points: ' + 0);
-    $('#playerAttackScore').text('Damage Taken: ' + computerAttackPoints);
-    $('#computerAttackScore').text('Damage Taken: ' + playerAttackPoints);
-
-    console.log('last function Health: ' + roundCounter + ' ' + computerHealthPoints + ' ' + playerHealthPoints); 
-
-    return(playerHealthPoints,playerAttackPoints,computerHealthPoints,computerAttackPoints);
-}
+$('#start').on('click', function() {
+    game.playerHealthPoints = 100;
+    game.computerHealthPoints = 50;
+    game.playerAttackPoints = 0;
+    game.computerAttackPoints = 0;
+    game.roundCounter = 1;
+    game.gameCounter = 1;
+    game.roundComplete = false;
+    $('#attack').prop('enable', true);
+    $('#gameCounter').text('Game: ' + game.gameCounter);
+    $('#roundCounter').text('Round: ' + game.roundCounter);
+    $('#playerHealthPointsId').text( 'Health points: 0'); 
+    $('#computerHealthPointsId').text('Health points: 0');
+    $('#playerAttackScore').text('Damage Taken: 0');
+    $('#computerAttackScore').text('Damage Taken: 0');
 
 });
+
+function attack() {
+    roundCounter++;
+    game.playerHealthPoints = game.playerHealthPoints - game.computerAttackPoints;
+    game.computerHealthPoints = game.computerHealthPoints - game.playerAttackPoints;
+
+    console.log('Attack: ' + game.roundCounter + ' ' + game.playerAttackPoints + ' ' + game.computerAttackPoints);
+    console.log('Health: ' + game.roundCounter + ' ' + game.computerHealthPoints + ' ' + game.playerHealthPoints); 
+
+    $('#roundCounter').text('Round: ' + game.roundCounter);
+    $('#playerHealthPointsId').text((game.playerHealthPoints > 0) ? 'Health points: ' 
+        + game.playerHealthPoints : 'Health points: ' + 0);
+    $('#computerHealthPointsId').text((game.computerHealthPoints > 0) ? 'Health points: ' 
+        + game.computerHealthPoints : 'Health points: ' + 0);
+    $('#playerAttackScore').text('Damage Taken: ' + game.computerAttackPoints);
+    $('#computerAttackScore').text('Damage Taken: ' + game.playerAttackPoints);
+
+    console.log('last function Health: ' + game.roundCounter + ' ' + game.computerHealthPoints + ' ' 
+        + game.playerHealthPoints); 
+
+    return(game.playerHealthPoints,game.playerAttackPoints,game.computerHealthPoints,game.computerAttackPoints);
+};
+
+
+});
+
+
