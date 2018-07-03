@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Literary Smackdown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/javascript.js"></script>
@@ -49,7 +48,7 @@
                     </div> <!-- End Player -->
                     <div class="card arenaBox" id="currentChallenger">
                         <div class="card-header">
-                            <h5>Challenger</h5>
+                            <h5 id="challengerName">Challenger</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text"></p>
@@ -59,21 +58,21 @@
                     </div> <!-- End Challenger -->
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary disabled" id='attack'>Attack!</button>
+                    <button type="button" class="btn btn-primary btn-sm" disabled id='attack'>Attack!</button>
                 </div>
             </div> <!-- end game board -->
             <div class="col-md-3" id="characters">
                 <div class="card gameCharacter">
                     <div class="card-header">
-                        <h5>Faust</h5>
+                        <h5 class="faustName">Faust</h5>
                     </div>
                     <div class="card-body">
                         <p class="card-text">Health Points: 100</p>
-                        <a href="#" class="btn btn-primary btn-sm">Challenge</a>
+                        <button type="button" class="btn btn-primary btn-sm" id="faustButton">Challenge</button>
                     </div>
                 </div> <!-- end character 1-->
                 <div class="card gameCharacter">
-                    <div class="card-header">
+                    <div class="card-header"> 
                         <h5>Iago</h5>
                     </div>
                     <div class="card-body">

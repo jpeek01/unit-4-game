@@ -44,7 +44,7 @@ $('#start').on('click', function() {
     game.roundCounter = 1;
     game.gameCounter = 1;
     game.roundComplete = false;
-    $('#attack').prop('enable', true);
+    $('#attack').removeAttr('disabled');
     $('#gameCounter').text('Game: ' + game.gameCounter);
     $('#roundCounter').text('Round: ' + game.roundCounter);
     $('#playerHealthPointsId').text( 'Health points: 0'); 
@@ -53,6 +53,12 @@ $('#start').on('click', function() {
     $('#computerAttackScore').text('Damage Taken: 0');
 
 });
+
+$('#faustButton').on('click', function() {
+    // alert($('div.faust').text());
+    $('#challengerName').text($('h5.faust').text());
+    
+})
 
 function attack() {
     roundCounter++;
