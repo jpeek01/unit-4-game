@@ -12,6 +12,14 @@
     color: white;
 }
 
+#start {
+    margin-left: 15px; /* line it up with the Games stats*/
+}
+
+.arenaBox {
+    margin: 15px; /* give all the bootstrap cards a margin */
+}
+
 #stats {
     background-color: #7FB3D5;
 }
@@ -23,12 +31,22 @@
     background-color: lightgrey;
 }
 
-.arenaBox {
-    margin:20px;
+#attack {
+    margin: 25px 10px 0px 25px;
 }
 
-#attack {
-    margin: 25px;
+#attack:disabled {
+    background-color: grey;
+    border: 1px solid black;
+}
+
+#next {
+    margin: 25px 10px 0px 0px;
+}
+
+.challengerButton:disabled {
+    background-color: grey;
+    border: 1px solid black;
 }
 
 #characters {
@@ -42,6 +60,10 @@
 
 p {
     line-height: 1.6em;
+}
+
+#gameMessage {
+    font-size: 24pt;
 }
 
 footer {

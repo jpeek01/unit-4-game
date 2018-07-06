@@ -27,11 +27,17 @@
                         <h5>Game Stats</h5>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-text" id='gameCounter'>Game: </h6>
-                        <p class="card-text" id='roundCounter'>Round: </p>
+                        <h6 class="card-text">Game: <span id='gameCounter'> </span></h6>
+                        <p class="card-text">Round: <span id ='roundCounter'></span></p>
+                        <p class="card-text">Games Won: <span id ='gamesWon'></span></p>
+                        <p class="card-text">Defeated List</p>
+                        <ul id="defeatedList">
+                        </ul>
+                        
                     </div>
                 </div>
             </div>
+<!-- ************  Begin Game Board ****************** -->
             <div class="col-md-6" id='gameBoard'>
                 <h3>Arena</h3>
                 <hr>
@@ -42,60 +48,72 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text"></p>
-                            <p id='playerHealthPointsId'>Health points:</p>
-                            <p id='playerAttackScore'>Damage Taken:</p>
+                            <p>Health Points: <span id='playerHealthPoints'></span></p> 
+                            <p>Damage Taken: <span id='playerAttackScore'></span></p>
                         </div>
-                    </div> <!-- End Player -->
+                    </div> 
+        <!-- End Player -->
                     <div class="card arenaBox" id="currentChallenger">
                         <div class="card-header">
-                            <h5 id="challengerName">Challenger</h5>
+                            <h5 id="challengerArenaName">Challenger</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text"></p>
-                            <p id='challengerHealthPoints'>Health points:</p>
-                            <p id='challengerAttackScore'>Damage Taken:</p>
+                            <p>Health Points: <span id='challengerArenaHealthPoints'></span></p>
+                            <p>Damage Taken: <span id='challengerAttackScore'></span></p>
                         </div>
-                    </div> <!-- End Challenger -->
+                    </div> 
+        <!-- End Challenger -->
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary btn-sm" disabled id='attack'>Attack!</button>
+                    <button type="button" class="btn btn-primary btn-sm" id='attack' disabled>Attack!</button>
+                    <button type="button" class="btn btn-primary btn-sm" id='next' disabled>Next Challenger</button>
                 </div>
-            </div> <!-- end game board -->
+                <br><hr>
+                <div class="card" id="gameMessageBox">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span id="gameMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+<!-- ************ End Game Board ****************** -->
             <div class="col-md-3" id="characters">
-                <div class="card gameCharacter">
+                <div class="card gameCharacter"> <!-- Character 1-->
                     <div class="card-header">
-                        <h5 id="challenger1Name"></h5>
+                        <h5 id="challengerName1"></h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" id="challenger1HealthPoints">Health Points:</p>
-                        <button type="button" class="btn btn-primary btn-sm" id="challenger1Button">Challenge</button>
+                        <p class="card-text">Health Points: <span id="challengerHealthPoints1"></span></p>
+                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton1" value="1" disabled>Challenge</button>
                     </div>
                 </div> <!-- end character 1-->
-                <div class="card gameCharacter">
+                <div class="card gameCharacter"> <!-- Character 2-->
                     <div class="card-header"> 
-                        <h5 id="challenger2Name"></h5>
+                        <h5 id="challengerName2"></h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" id="challenger2HealthPoints">Health Points:</p>
-                        <button type="button" class="btn btn-primary btn-sm" id="challenger2Button">Challenge</a>
+                        <p class="card-text">Health Points: <span id="challengerHealthPoints2"></span></p>
+                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton2" value="2" disabled>Challenge</button>
                     </div>
                 </div> <!-- end character 2-->
-                <div class="card gameCharacter">
+                <div class="card gameCharacter"> <!-- Character 3-->
                     <div class="card-header">
-                        <h5 id="challenger3Name"></h5>
+                        <h5 id="challengerName3"></h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" id="challenger3HealthPoints">Health Points:</p>
-                        <button type="button" class="btn btn-primary btn-sm">Challenge</a>
+                        <p class="card-text">Health Points: <span id="challengerHealthPoints3"></span></p>
+                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton3" value="3" disabled>Challenge</button>
                     </div>
                 </div> <!-- end character 3-->
-                <div class="card gameCharacter">
+                <div class="card gameCharacter"> <!-- Character 4-->
                     <div class="card-header">
-                        <h5 id="challenger4Name"></h5>
+                        <h5 id="challengerName4"></h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" id="challenger4HealthPoints" >Health Points:</p>
-                        <button type="button" class="btn btn-primary btn-sm">Challenge</a>
+                        <p class="card-text">Health Points: <span id="challengerHealthPoints4"></span></p>
+                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton4" value="4" disabled>Challenge</button>
                     </div>
                 </div> <!-- end character 4-->
             </div>

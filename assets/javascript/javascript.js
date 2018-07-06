@@ -1,127 +1,131 @@
 var game = {
     playerHealthPoints: 100,
-    challengerHealthPoints: 0,
     playerAttackPoints: 0,
+    challengerArenaHealthPoints: 0,
     challengerAttackPoints: 0,
-    roundCounter: 0,
-    gameCounter: 0,
-    roundComplete: false,
+    challengerArenaName: '',
+    challengerName: ['','Faust', 'Iago', 'Grendel', 'Sauron'],
+    challengerHealthPoints: [0,100,125,150,200],
+    trackChallengerIndex: 0,
+    roundCounter: 1,
+    gameCounter: 1,
+    wins: 0,
 };
-
-var challengers = {
-    challenger1name: 'Faust',
-    challenger1HealthPoints: 100,
-    challenger2name: 'Iago',
-    challenger2HealthPoints: 125,
-    challenger3name: 'Grendel',
-    challenger3HealthPoints: 150,
-    challenger4name: 'Sauron',
-    challenger4HealthPoints: 200,
-}
-
 
 $(document).ready(function() {
 
+    // set the name and HP for the cards in the right side bar
+    for (i = 1; i < 5; i++) {
+        $('#challengerName' + i).text(game.challengerName[i]);
+        $('#challengerHealthPoints' + i).text(game.challengerHealthPoints[i]);
+    }
+    
+
+// ****  Game play logic
     $('#attack').on('click', function() {
 
         game.playerAttackPoints = Math.floor(Math.random() * 26);
         game.challengerAttackPoints = Math.floor(Math.random() * 26);
 
-        console.log('test');
-
-        if (game.playerHealthPoints > 0 && game.challengerHealthPoints > 0 && game.roundComplete == false) {
-            attack(game.playerHealthPoints,game.playerAttackPoints,game.challengerHealthPoints,game.challengerAttackPoints);
+        if (game.playerHealthPoints > 0 && game.challengerArenaHealthPoints > 0 && game.roundComplete == false) {
+            attack(game.playerHealthPoints,game.playerAttackPoints,game.challengerArenaHealthPoints,game.challengerAttackPoints);
+            $('.challengerButton').removeAttr('disabled');
             game.roundCounter++ ;
+
+// *** Game Over Condition
+        } else if (game.playerHealthPoints < 0 || game.challengerArenaHealthPoints < 0) {
+            //display a message letting the player know who won
+    
+    // *** Player Loses
+            if (game.playerHealthPoints <= 0) {
+                $('#gameMessage').css('color', 'red').text(displayMessage('Game over! ' + game.challengerName[trackChallengerIndex] + ' Won!'));
+            } 
+    // *** Player Wins
+            else {
+                game.wins++;
+                game.playerHealthPoints = 1025; //Increase HP when the player wins
+                $('#gameMessage').css('color', 'green').text(displayMessage('The Player Won!'));
+                $('#gamesWon').text(game.wins);
+                updateDefeatedList(game.challengerName[trackChallengerIndex]);
+            }
+
+            $('#attack').attr('disabled', true);
+            $('#start').removeAttr('disabled'); 
             game.gameCounter++;
-            console.log('first if Health: ' + game.roundCounter + ' ' + game.challengerHealthPoints + ' ' 
-                + game.playerHealthPoints); 
-        } else if (game.playerHealthPoints < 0 || game.challengerHealthPoints < 0) {
-            $('#roundCounter').text((game.playerHealthPoints <= 0) ? 'The Computer Won' : 'The Player Won');
-
-            $('#attack').prop('disabled', true);
-
-            roundComplete = true;
-
-            console.log('Game Over!');
         };
     });
 
+// Sets the challenge buttons to display the challenger data in the arena
+    $('.challengerButton').on('click', function() {
+        trackChallengerIndex = $(this).val();
+        game.challengerArenaName = game.challengerName[trackChallengerIndex];
+        game.challengerArenaHealthPoints = game.challengerHealthPoints[trackChallengerIndex];
+        $('#challengerArenaName').text(game.challengerArenaName);
+        $('#challengerArenaHealthPoints').append(game.challengerArenaHealthPoints);
 
-$('#start').on('click', function() {
-    game.playerHealthPoints = 100;
-    game.challengerHealthPoints = 0;
-    game.playerAttackPoints = 0;
-    game.challengerAttackPoints = 0;
-    game.roundCounter = 1;
-    game.gameCounter = 1;
-    game.roundComplete = false;
-    $('#attack').removeAttr('disabled');
-    $('#gameCounter').text('Game: ' + game.gameCounter);
-    $('#roundCounter').text('Round: ' + game.roundCounter);
-    $('#playerHealthPointsId').text( 'Health points: 0'); 
-    $('#computerHealthPointsId').text('Health points: 0');
-    $('#playerAttackScore').text('Damage Taken: 0');
-    $('#computerAttackScore').text('Damage Taken: 0');
+        $('#attack').removeAttr('disabled')
+        $('.challengerButton').attr('disabled', true);
+        
+    });
 
-    $('#challenger1Name').text(challengers.challenger1name);
-    $('#challenger1HealthPoints').text('Health Points:' + challengers.challenger1HealthPoints);
+    function attack() {
+        roundCounter++;
+        game.playerHealthPoints -= game.challengerAttackPoints;
+        game.challengerArenaHealthPoints -= game.playerAttackPoints;
 
-    $('#challenger2Name').text(challengers.challenger2name);
-    $('#challenger2HealthPoints').text('Health Points:' + challengers.challenger2HealthPoints);
+        console.log('Attack: ' + game.roundCounter + ' ' + game.playerAttackPoints + ' ' + game.challengerAttackPoints);
+        console.log('Health: ' + game.roundCounter + ' ' + game.challengerArenaHealthPoints + ' ' + game.playerHealthPoints); 
 
-    $('#challenger3Name').text(challengers.challenger3name);
-    $('#challenger3HealthPoints').text('Health Points:' + challengers.challenger3HealthPoints);
+        $('#roundCounter').text(game.roundCounter); //update the round counter
+        //update the player/challenger health and attacks. IF to display a 0 if number drops into negatice
+        $('#playerHealthPoints').text((game.playerHealthPoints > 0) ? game.playerHealthPoints : 0);
+        $('#challengerArenaHealthPoints').text((game.challengerArenaHealthPoints > 0) ? game.challengerArenaHealthPoints : 0);
+        $('#playerAttackScore').text(game.challengerAttackPoints);
+        $('#challengerAttackScore').text(game.playerAttackPoints);
 
-    $('#challenger4Name').text(challengers.challenger4name);
-    $('#challenger4HealthPoints').text('Health Points:' + challengers.challenger4HealthPoints);
-});
+        return(game.playerHealthPoints,game.playerAttackPoints,game.challengerArenaHealthPoints,game.challengerAttackPoints);
+    };
 
-$('#challenger1Button').on('click', function() {
-    $('#challengerName').text(challengers.challenger1Name);
-    $('#challengerHealthPoints').text(challengers.challenger1HealthPoints);
-    game.challengerHealthPoints = challenger1HealthPoints;
-});
+// Starts and restarts the game
+    $('#start').on('click', function() {
+        game.roundComplete = false;
+        game.gameStart = true;
+        resetArena();
 
-$('#challenger2Button').on('click', function() {
-    $('#challengerName').text(challengers.challenger2Name);
-    $('#challengerHealthPoints').text(challengers.challenger2HealthPoints);
-    game.challengerHealthPoints = challenger2HealthPoints;
-});
+        $('#start').attr('disabled', true).text('Restart Game');
+        $('.challengerButton').removeAttr('disabled');
+    });
 
-$('#challenger3Button').on('click', function() {
-    $('#challengerName').text(challengers.challenger3Name);
-    $('#challengerHealthPoints').text(challengers.challenger3HealthPoints);
-    game.challengerHealthPoints = challenger3HealthPoints;
-});
+    function resetArena() {
+        game.gameCounter = 1;
+        game.roundCounter = 1;
+        game.playerAttackPoints = 0;
+        game.challengerArenaHealthPoints = 0;
+        game.challengerAttackPoints = 0;
+        
+        $('#gameCounter').text(game.gameCounter);
+        $('#roundCounter').text(game.roundCounter);
+        $('#playerHealthPoints').text(game.playerHealthPoints); 
+        $('#challengerArenaHealthPoints').empty();
+        $('#playerAttackScore').empty();
+        $('#challengerAttackScore').empty();
 
-$('#challenger4Button').on('click', function() {
-    $('#challengerName').text(challengers.challenger4Name);
-    $('#challengerHealthPoints').text(challengers.challenger4HealthPoints);
-    game.challengerHealthPoints = challenger4HealthPoints;
-});
+        $('#gameMessageBox').hide()
+    }
 
-function attack() {
-    roundCounter++;
-    game.playerHealthPoints = game.playerHealthPoints - game.challengerAttackPoints;
-    game.challengerHealthPoints = game.challengerHealthPoints - game.playerAttackPoints;
+    function updateDefeatedList(name) {
+        $("#defeatedList").append("<li>" + name + "</li>")
+    }
 
-    console.log('Attack: ' + game.roundCounter + ' ' + game.playerAttackPoints + ' ' + game.challengerAttackPoints);
-    console.log('Health: ' + game.roundCounter + ' ' + game.challengerHealthPoints + ' ' + game.playerHealthPoints); 
+    function displayMessage(message) {
+        //show the message box and the message when needed
+        $('#gameMessageBox').show();
+        $('#gameMessage').text(message);
+    }
 
-    $('#roundCounter').text('Round: ' + game.roundCounter);
-    $('#playerHealthPointsId').text((game.playerHealthPoints > 0) ? 'Health points: ' 
-        + game.playerHealthPoints : 'Health points: ' + 0);
-    $('#computerHealthPointsId').text((game.challengerHealthPoints > 0) ? 'Health points: ' 
-        + game.challengerHealthPoints : 'Health points: ' + 0);
-    $('#playerAttackScore').text('Damage Taken: ' + game.challengerAttackPoints);
-    $('#computerAttackScore').text('Damage Taken: ' + game.playerAttackPoints);
-
-    console.log('last function Health: ' + game.roundCounter + ' ' + game.challengerHealthPoints + ' ' 
-        + game.playerHealthPoints); 
-
-    return(game.playerHealthPoints,game.playerAttackPoints,game.challengerHealthPoints,game.challengerAttackPoints);
-};
-
+    //hide certain elements until it's needed
+    $('#gameMessageBox').hide(); 
+    $('#next').hide();
 
 });
 
