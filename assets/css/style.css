@@ -3,17 +3,19 @@
     border: 1px solid red;
 }
 
-#header {
-    height: 100%;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
+body {
     background-color: #21618C;
+}
+
+#title {
+    font-size: 28pt;
+    margin: 0px auto;
+    padding: 0px;
     color: white;
 }
 
 #start {
-    margin-left: 15px; /* line it up with the Games stats*/
+    margin-left: 15px;
 }
 
 .arenaBox {
@@ -21,14 +23,25 @@
 }
 
 #stats {
+    margin-top: 20px;
     background-color: #7FB3D5;
 }
 
 #gameBoard {
-    width: 350px;
+    margin-top: 20px;
+}
+
+#gameBoard {
     height: auto;
     padding: 25px;
     background-color: lightgrey;
+}
+
+.arenaImage {
+    float: left;
+    width: 100px;
+    height: 200px;
+    border: 1px solid #202020;
 }
 
 #attack {
@@ -44,35 +57,29 @@
     margin: 25px 10px 0px 0px;
 }
 
-.challengerButton:disabled {
-    background-color: grey;
-    border: 1px solid black;
-}
-
-#characters {
+.characters {
     background-color: #7FB3D5;
 }
 
 .gameCharacter {
-    max-width: 75%;
+    display: block;
     margin: 20px auto;
-}
-
-p {
-    line-height: 1.6em;
+    padding: 10px;
+    border: 1px solid #202020;
+    background-color: lightgrey;
 }
 
 #gameMessage {
-    font-size: 24pt;
+    font-size: 18pt;
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    /* left: 0px; */
     width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    border: 1px solid black;
-    background-color: black;
+    height: auto;
+    background-color: #202020;
     color: white;
 }
 

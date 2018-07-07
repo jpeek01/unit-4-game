@@ -13,13 +13,10 @@
     
 </head>
 <body>
-    <div id="header" class="">
-        <h2>Literary Smackdown</h2>
-    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button type="button" class="btn btn-success" id="start">Start Game</button>
+        <h2 id="title">Literary Smackdown</h2>
     </nav>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-3" id="stats">
                 <div class="card arenaBox" id="playerCharacter">
@@ -28,46 +25,48 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-text">Game: <span id='gameCounter'> </span></h6>
-                        <p class="card-text">Round: <span id ='roundCounter'></span></p>
-                        <p class="card-text">Games Won: <span id ='gamesWon'></span></p>
-                        <p class="card-text">Defeated List</p>
-                        <ul id="defeatedList">
-                        </ul>
-                        
+                        <p class="card-text">Round: <span id ='roundCounter'></span></p>                      
                     </div>
                 </div>
             </div>
 <!-- ************  Begin Game Board ****************** -->
-            <div class="col-md-6" id='gameBoard'>
+            <div class="col-md-9" id="gameBoard">
                 <h3>Arena</h3>
                 <hr>
                 <div class="card-group">
                     <div class="card arenaBox" id="playerCharacter">
                         <div class="card-header">
                             <h5>Player</h5>
+                            <h5 id="playerArenaName"></h5>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text"></p>
-                            <p>Health Points: <span id='playerHealthPoints'></span></p> 
-                            <p>Damage Taken: <span id='playerAttackScore'></span></p>
+                        <div class="card-body player">
+                            <div>
+                                <p>Health Points: <span id='playerArenaHealthPoints'></span></p> 
+                                <p>Damage Taken: <span id='challengerAttackScore'></span></p>
+                            </div>
+                            <div class="playerImage">
+                            </div>
                         </div>
                     </div> 
         <!-- End Player -->
                     <div class="card arenaBox" id="currentChallenger">
                         <div class="card-header">
-                            <h5 id="challengerArenaName">Challenger</h5>
+                            <h5>Challenger</h5>
+                            <h5 id="challengerArenaName"></h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"></p>
-                            <p>Health Points: <span id='challengerArenaHealthPoints'></span></p>
-                            <p>Damage Taken: <span id='challengerAttackScore'></span></p>
+                            <div>
+                                <p>Health Points: <span id='challengerArenaHealthPoints'></span></p>
+                                <p>Damage Taken: <span id='playerAttackScore'></span></p>
+                            </div>
+                            <div class="challengerImage">
+                            </div>
                         </div>
                     </div> 
         <!-- End Challenger -->
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary btn-sm" id='attack' disabled>Attack!</button>
-                    <button type="button" class="btn btn-primary btn-sm" id='next' disabled>Next Challenger</button>
+                    <button type="button" class="btn btn-primary btn-sm" id='attack'>Attack!</button>
                 </div>
                 <br><hr>
                 <div class="card" id="gameMessageBox">
@@ -78,47 +77,39 @@
                     </div>
                 </div>
             </div>
+        </div>
 <!-- ************ End Game Board ****************** -->
-            <div class="col-md-3" id="characters">
-                <div class="card gameCharacter"> <!-- Character 1-->
-                    <div class="card-header">
+            <div class="row">
+                <div class="col-md-3 characters">
+                    <div id="challenger1" class="gameCharacter"> 
                         <h5 id="challengerName1"></h5>
-                    </div>
-                    <div class="card-body">
                         <p class="card-text">Health Points: <span id="challengerHealthPoints1"></span></p>
-                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton1" value="1" disabled>Challenge</button>
-                    </div>
-                </div> <!-- end character 1-->
-                <div class="card gameCharacter"> <!-- Character 2-->
-                    <div class="card-header"> 
+                        <img src="assets/images/faust.png" class="challengerButton" id="1">
+                    </div> <!-- end character 1-->
+                </div>
+                <div class="col-md-3 characters">
+                    <div id="challenger2" class="gameCharacter"> 
                         <h5 id="challengerName2"></h5>
-                    </div>
-                    <div class="card-body">
                         <p class="card-text">Health Points: <span id="challengerHealthPoints2"></span></p>
-                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton2" value="2" disabled>Challenge</button>
-                    </div>
-                </div> <!-- end character 2-->
-                <div class="card gameCharacter"> <!-- Character 3-->
-                    <div class="card-header">
+                        <img src="assets/images/iago.png" class="challengerButton" id="2">
+                    </div> <!-- end character 2-->
+                </div>
+                <div class="col-md-3 characters">
+                    <div id="challenger3" class="gameCharacter"> 
                         <h5 id="challengerName3"></h5>
-                    </div>
-                    <div class="card-body">
                         <p class="card-text">Health Points: <span id="challengerHealthPoints3"></span></p>
-                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton3" value="3" disabled>Challenge</button>
-                    </div>
-                </div> <!-- end character 3-->
-                <div class="card gameCharacter"> <!-- Character 4-->
-                    <div class="card-header">
+                        <img src="assets/images/grendel.png" class="challengerButton" id="3">
+                    </div> <!-- end character 3-->
+                </div>    
+                <div class="col-md-3 characters">
+                    <div id="challenger4" class="gameCharacter">
                         <h5 id="challengerName4"></h5>
-                    </div>
-                    <div class="card-body">
                         <p class="card-text">Health Points: <span id="challengerHealthPoints4"></span></p>
-                        <button type="button" class="btn btn-primary btn-sm challengerButton" id="challengerButton4" value="4" disabled>Challenge</button>
-                    </div>
-                </div> <!-- end character 4-->
+                        <img src="assets/images/sauron.png" class="challengerButton" id="4">
+                    </div> <!-- end character 4-->
+                </div>
             </div>
         </div>
-    </div>
     <footer class="footer text-centered">
         <p id="footerText" class="" >Copyright James Peek 2018</p>
     </footer>
