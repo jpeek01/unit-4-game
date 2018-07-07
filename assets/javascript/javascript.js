@@ -61,27 +61,35 @@ $(document).ready(function() {
 
 // Sets the challenge buttons to display the challenger data in the arena
     $('.challengerButton').on('click', function() {
-        trackChallengerIndex = $(this).attr("id")
+        
+        
 
         if ($(".playerImage").children().length == 0) {
-
             $(".playerImage").append($(this));
-            game.playerArenaName = game.characterName[trackChallengerIndex];
-            game.playerArenaHealthPoints = game.characterHealthPoints[trackChallengerIndex];
+            game.trackPlayerIndex = $(this).attr("id");
+            game.playerArenaName = game.characterName[game.trackPlayerIndex];
+            game.playerArenaHealthPoints = game.characterHealthPoints[game.trackPlayerIndex];
             $('#playerArenaName').text(game.playerArenaName);
-            $('#playerArenaHealthPoints').text(game.playerArenaHealthPoints);
-            
+            $('#playerArenaHealthPoints').text(game.playerArenaHealthPoints); 
+
         } else if ($(".challengerImage").children().length == 0) {
             $(".challengerImage").append($(this));
-            game.challengerArenaName = game.characterName[trackChallengerIndex];
-            game.challengerArenaHealthPoints = game.characterHealthPoints[trackChallengerIndex];
+            game.trackChallengerIndex = $(this).attr("id");
+            game.challengerArenaName = game.characterName[game.trackChallengerIndex];
+            game.challengerArenaHealthPoints = game.characterHealthPoints[game.trackChallengerIndex];
             $('#challengerArenaName').text(game.challengerArenaName);
             $('#challengerArenaHealthPoints').text(game.challengerArenaHealthPoints);
             $('#attack').show();
         } else {
+            console.log(game.trackPlayerIndex);
+            console.log(game.trackChallengerIndex);
+            game.playerArenaHealthPoints = game.characterHealthPoints[game.trackPlayerIndex];
+            $('#playerArenaHealthPoints').text(game.playerArenaHealthPoints);
+
+            trackChallengerIndex = $(this).attr("id");
             $(".challengerImage").empty().append($(this));
-            game.challengerArenaName = game.characterName[trackChallengerIndex];
-            game.challengerArenaHealthPoints = game.characterHealthPoints[trackChallengerIndex];
+            game.challengerArenaName = game.characterName[game.trackChallengerIndex];
+            game.challengerArenaHealthPoints = game.characterHealthPoints[game.trackChallengerIndex];
             $('#challengerArenaName').text(game.challengerArenaName);
             $('#challengerArenaHealthPoints').text(game.challengerArenaHealthPoints);
             resetBoard();
